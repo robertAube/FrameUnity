@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class btnPlayCtrl : MonoBehaviour
+public class VideoPlayerCTRL : MonoBehaviour
 {
     public Canvas canvasVideo;
+    public Button btnPlayPause;
     public Sprite imgPlay;
     public Sprite imgPause;
     [SerializeField]
@@ -19,6 +19,7 @@ public class btnPlayCtrl : MonoBehaviour
     {
         Pause();
     }
+
     void Update()
     {
         if (canvasVideo.enabled == false)
@@ -34,9 +35,8 @@ public class btnPlayCtrl : MonoBehaviour
         }
     }
 
-    public void OnClic()
+    public void OnClick_playPause()
     {
-
         Debug.Log(++n + " - Click : " + play);
         if (play)
         {
@@ -55,7 +55,7 @@ public class btnPlayCtrl : MonoBehaviour
             Debug.Log("Pause : " + play);
             play = false;
             vp.Pause();
-            gameObject.GetComponent<UnityEngine.UI.Image>().sprite = imgPlay;
+            btnPlayPause.GetComponent<Image>().sprite = imgPlay;
         }
     }
 
@@ -65,7 +65,7 @@ public class btnPlayCtrl : MonoBehaviour
         {
             play = true;
             vp.Play();
-            gameObject.GetComponent<UnityEngine.UI.Image>().sprite = imgPause;
+            btnPlayPause.GetComponent<Image>().sprite = imgPause;
         }
     }
 

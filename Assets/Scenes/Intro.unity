@@ -1356,7 +1356,6 @@ GameObject:
   - component: {fileID: 886555144}
   - component: {fileID: 886555143}
   - component: {fileID: 886555142}
-  - component: {fileID: 886555141}
   m_Layer: 5
   m_Name: btnTogglePlay
   m_TagString: Untagged
@@ -1383,22 +1382,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &886555141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886555139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a037e11b25a6a4383946f3e43b92bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasVideo: {fileID: 1277280139}
-  imgPlay: {fileID: 21300000, guid: 799d5033b13ddcc46a3ab436b558921a, type: 3}
-  imgPause: {fileID: 21300000, guid: 9a414f4ab01034747a13ebe3ec7cce90, type: 3}
-  vp: {fileID: 2054253796}
 --- !u!114 &886555142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1442,8 +1425,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 886555141}
-        m_MethodName: OnClic
+      - m_Target: {fileID: 2054253797}
+        m_MethodName: OnClick_playPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2850,10 +2833,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2054253794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a573759755fe49b70bb42454c0224, type: 3}
+  m_Script: {fileID: 11500000, guid: e9a037e11b25a6a4383946f3e43b92bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasVideo: {fileID: 1277280139}
+  btnPlayPause: {fileID: 886555142}
+  imgPlay: {fileID: 21300000, guid: 799d5033b13ddcc46a3ab436b558921a, type: 3}
+  imgPause: {fileID: 21300000, guid: 9a414f4ab01034747a13ebe3ec7cce90, type: 3}
   vp: {fileID: 2054253796}
 --- !u!1 &2145031304
 GameObject:
