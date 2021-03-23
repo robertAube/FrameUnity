@@ -1,19 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class VideoPlayerCTRL : MonoBehaviour
 {
-    public Canvas canvasVideo;
-    public Button btnPlayPause;
-    public Sprite imgPlay;
-    public Sprite imgPause;
     [SerializeField]
-    VideoPlayer vp;
-    private bool play = false;
-    private bool gone = true;
-    int n = 0;
+    private Canvas canvasTitre;
+    [SerializeField]
+    private Canvas canvasVideo;
+    [SerializeField]
+    private Button btnPlayPause;
+    [SerializeField]
+    private Button btnStop;
+    [SerializeField]
+    private Button btnRewind;
+    [SerializeField]
+    private Sprite imgPlay;
+    [SerializeField]
+    private Sprite imgPause;
+    [SerializeField]
+    private VideoPlayer videoPlayer;
 
+    private bool play = false;
+    private bool gone = true; //Vrai si on est sortie du Canvas
 
     void Start()
     {
@@ -29,7 +39,7 @@ public class VideoPlayerCTRL : MonoBehaviour
         }
         else
         {
-            if (gone) 
+            if (gone)
                 Jouer();
             gone = false;
         }
@@ -37,7 +47,6 @@ public class VideoPlayerCTRL : MonoBehaviour
 
     public void OnClick_playPause()
     {
-        Debug.Log(++n + " - Click : " + play);
         if (play)
         {
             Pause();
@@ -48,23 +57,50 @@ public class VideoPlayerCTRL : MonoBehaviour
         }
     }
 
+    public void OnClick_Stop()
+    {
+        Stop();
+    }
+
+    public void OnClick_Rewind()
+    {
+        Stop();
+        Jouer();
+    }
+
+    public void OnClick_ExitCanvas()
+    {
+        canvasVideo.enabled = false;
+        canvasTitre.enabled = true;
+        Pause();
+        gone = true;
+    }
+
+    private void Stop()
+    {
+        Debug.Log("Pause : " + play);
+        play = false;
+        videoPlayer.Stop();
+        btnPlayPause.GetComponent<Image>().sprite = imgPlay;
+    }
+
     private void Pause()
     {
-        if (vp.isPlaying)
+        if (videoPlayer.isPlaying)
         {
             Debug.Log("Pause : " + play);
             play = false;
-            vp.Pause();
+            videoPlayer.Pause();
             btnPlayPause.GetComponent<Image>().sprite = imgPlay;
         }
     }
 
     void Jouer()
     {
-        if (!vp.isPlaying)
+        if (!videoPlayer.isPlaying)
         {
             play = true;
-            vp.Play();
+            videoPlayer.Play();
             btnPlayPause.GetComponent<Image>().sprite = imgPause;
         }
     }
