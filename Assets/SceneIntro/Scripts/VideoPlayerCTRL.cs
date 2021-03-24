@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -78,7 +77,6 @@ public class VideoPlayerCTRL : MonoBehaviour
 
     private void Stop()
     {
-        Debug.Log("Pause : " + play);
         play = false;
         videoPlayer.Stop();
         btnPlayPause.GetComponent<Image>().sprite = imgPlay;
@@ -88,7 +86,7 @@ public class VideoPlayerCTRL : MonoBehaviour
     {
         if (videoPlayer.isPlaying)
         {
-            Debug.Log("Pause : " + play);
+//            Debug.Log("Pause : " + play);
             play = false;
             videoPlayer.Pause();
             btnPlayPause.GetComponent<Image>().sprite = imgPlay;

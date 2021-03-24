@@ -18,7 +18,6 @@ public class SelectCanvas : MonoBehaviour
 
     public void toggleIntroVideo()
     {
-        Debug.Log("Intro.enabled : " + Intro.enabled);
         Intro.enabled = !Intro.enabled;
         Video.enabled = !Intro.enabled;
     }
