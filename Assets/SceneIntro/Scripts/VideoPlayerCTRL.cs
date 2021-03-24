@@ -11,6 +11,8 @@ public class VideoPlayerCTRL : MonoBehaviour
     [SerializeField]
     private Button btnPlayPause;
     [SerializeField]
+    private Slider slider;
+    [SerializeField]
     private Button btnStop;
     [SerializeField]
     private Button btnRewind;
@@ -23,14 +25,23 @@ public class VideoPlayerCTRL : MonoBehaviour
 
     private bool play = false;
     private bool gone = true; //Vrai si on est sortie du Canvas
+    private bool mouseOverSlider = true; //Vrai si on est sortie du Canvas
+    private bool updateEnable = true;
+
+    void Awake()
+    {
+        //  videoPlayer = GetComponent<VideoPlayer>();
+        Pause();
+        mouseOverSlider = true;
+    }
 
     void Start()
     {
-        Pause();
+        InvokeRepeating("surveillerCmd", 1f, 0.3f);
+        InvokeRepeating("sliderUpdate", 1f, 0.5f);
     }
 
-    void Update()
-    {
+    private void surveillerCmd() {
         if (canvasVideo.enabled == false)
         {
             gone = true;
@@ -42,6 +53,30 @@ public class VideoPlayerCTRL : MonoBehaviour
                 Jouer();
             gone = false;
         }
+    }
+
+    private void sliderUpdate()
+    {
+        if (updateEnable && videoPlayer.frameCount > 0)
+        {
+            slider.value = (float)videoPlayer.frame / (float)videoPlayer.clip.frameCount;
+        }
+    }
+
+    public void SlideTo(float fraction)
+    {
+        slider.value = fraction;
+    }
+
+    public void setMouseOverSlider(bool isOverSlider) {
+        updateEnable = isOverSlider;
+    }
+
+    public void setVideoPosition() {
+        updateEnable = false;
+        videoPlayer.frame = (long) ((float) slider.value * (float)videoPlayer.clip.frameCount);
+        setMouseOverSlider(false);
+        updateEnable = true;
     }
 
     public void OnClick_playPause()
