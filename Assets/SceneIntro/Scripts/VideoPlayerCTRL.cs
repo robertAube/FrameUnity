@@ -104,7 +104,4 @@ public class VideoPlayerCTRL : MonoBehaviour
             btnPlayPause.GetComponent<Image>().sprite = imgPause;
         }
     }
-
-
-
 }

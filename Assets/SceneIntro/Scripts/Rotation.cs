@@ -10,9 +10,9 @@ public class Rotation : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
 
-    private float xSpinning;
-    private float ySpinning;
-    private float zSpinning;
+    private float xAngle;
+    private float yAngle;
+    private float zAngle;
 
 
     private void Start()
@@ -23,7 +23,7 @@ public class Rotation : MonoBehaviour
     void FixedUpdate()
     {
         adjustSpeed();
-        transform.Rotate(xSpinning * Time.deltaTime, ySpinning * Time.deltaTime, zSpinning * Time.deltaTime);
+        transform.Rotate(xAngle * Time.deltaTime, yAngle * Time.deltaTime, zAngle * Time.deltaTime, Space.World);
     }
     private void adjustSpeed()
     {
@@ -42,16 +42,16 @@ public class Rotation : MonoBehaviour
     {
         if (increment != 0)
         {
-            if ((speed <= -maxSpeed && increment > 0)|| (maxSpeed <= speed && increment < 0))
+            if ((speed <= -maxSpeed && increment > 0) || (maxSpeed <= speed && increment < 0))
             {
                 speed = speed + increment;
             }
-            else 
+            else
                 speed = increment < 0 ? Math.Max(-maxSpeed, speed + increment) : Math.Min(+maxSpeed, speed + increment);
         }
         Debug.Log("speed : " + speed + " - increment : " + increment);
-        xSpinning = speed;
-        ySpinning = speed;
-        zSpinning = speed;
+        xAngle = speed;
+        yAngle = speed;
+        zAngle = speed;
     }
 }
